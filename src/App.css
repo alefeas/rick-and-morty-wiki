@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+* {
+  scroll-behavior: smooth;
+}
+.charactersList {
+  display: flex;
+  flex-wrap: wrap;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
