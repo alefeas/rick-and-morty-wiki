@@ -4,7 +4,7 @@ export const Character = (character) => {
   return (
       <Link className="item" to={`/character/${character.id}`}>
         <img src={character.image} alt={character.name} />
-        <span key={character.id}>{character.name}</span>
+        <h3 key={character.id}>{character.name}</h3>
       </Link>
     )
 }

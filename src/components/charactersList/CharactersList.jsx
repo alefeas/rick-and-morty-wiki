@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Character } from './character/Character.jsx';
+import { useSessionStorage } from '../../hooks/sessionStorage.jsx';
 
 export const CharactersList = () => {
     const [characters, setCharacters] = useState([]);
     const [pages, setPages] = useState([]);
     const [prevPage, setPrevPage] = useState(null);
     const [nextPage, setNextPage] = useState(null);
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useSessionStorage('currentPage',1)
 
     const fetchData = async (url) => {
         try {
@@ -23,11 +24,10 @@ export const CharactersList = () => {
     };
 
     useEffect(() => {
-        const apiUrl = 'https://rickandmortyapi.com/api/character';
+        const apiUrl = `https://rickandmortyapi.com/api/character?page=${currentPage}`;
         fetchData(apiUrl);
-    }, []);
+    }, [currentPage]);
 
-    console.log(characters);
     const handlePrevPage = () => {
         if (prevPage) {
             setCharacters([])
@@ -60,16 +60,16 @@ export const CharactersList = () => {
             </div>
             : <span className='loader'>loading...</span>
         }
-        <div>
-        <button onClick={handlePrevPage} disabled={!prevPage}>
-            Página Anterior
-        </button>
-        <span>{currentPage}</span>
-        <span> -     </span>
-        <span>{pages}</span>
-        <button onClick={handleNextPage} disabled={!nextPage}>
-            Siguiente Página
-        </button>
+        <div className='paginationContainer'>
+            <button onClick={handlePrevPage} disabled={!prevPage}>
+                Página Anterior
+            </button>
+            <span>{currentPage}</span>
+            <span> -     </span>
+            <span>{pages}</span>
+            <button onClick={handleNextPage} disabled={!nextPage}>
+                Siguiente Página
+            </button>
         </div>
     </div>
     );

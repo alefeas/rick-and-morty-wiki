@@ -1,6 +1,12 @@
 * {
     scroll-behavior: smooth;
 }
+body {
+    background-color: rgb(165, 189, 189);
+    h1 {
+        text-align: center;
+    }
+}
 .charactersList {
     display: flex;
     flex-wrap: wrap;
@@ -8,6 +14,7 @@
     width: 80vw;
     margin: 0 auto;
     .item {
+        text-align: center;
         display: flex;
         flex-direction: column;
         text-decoration: none;
@@ -16,6 +23,27 @@
             background-color: black;
             width: 15.166vw;
         }
+        h3 {
+            width: 15.166vw;
+        }
+        &:hover {
+            background-color: rgb(209, 209, 209);
+        }
+    }
+}
+.infoLocationContainer {
+    display: flex;
+    flex-direction: column;
+}
+.paginationContainer {
+    text-align: center;
+    button {
+        background-color: red;
+        border: 1px solid black;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        cursor: pointer;
     }
 }
 .itemDetail {
