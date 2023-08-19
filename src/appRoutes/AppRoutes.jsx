@@ -1,14 +1,14 @@
 import { Route, Routes } from "react-router-dom"
 import { CharactersList } from "../components/charactersList/CharactersList.jsx"
-import { LocationsList } from "../components/locationsList/LocationsList.jsx"
-import { EpisodesList } from "../components/episodesList/EpisodesList.jsx"
+import { CharacterDetail } from "../components/charactersList/characterDetail/CharacterDetail.jsx"
+import { NotFound } from "../components/notFound/NotFound.jsx"
 
 export const AppRoutes = () => {
     return (
         <Routes>
             <Route path="/characters" element={<CharactersList/>}/>
-            <Route path="/locations" element={<LocationsList/>}/>
-            <Route path="/episodes" element={<EpisodesList/>}/>
+            <Route path="/character/:id" element={<CharacterDetail/>}/>
+            <Route path="*" element={<NotFound/>}/>
         </Routes>
     )
 }

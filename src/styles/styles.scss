@@ -1,0 +1,36 @@
+* {
+    scroll-behavior: smooth;
+}
+.charactersList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 80vw;
+    margin: 0 auto;
+    .item {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: black;
+        img {
+            background-color: black;
+            width: 15.166vw;
+        }
+    }
+}
+.itemDetail {
+    margin: 0 auto;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+.spanLocation {
+    cursor: pointer;
+    color: red;
+}
+.loader {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -30,6 +30,7 @@ export const CharactersList = () => {
     console.log(characters);
     const handlePrevPage = () => {
         if (prevPage) {
+            setCharacters([])
             fetchData(prevPage);
             setCurrentPage(currentPage - 1);
         }
@@ -37,6 +38,7 @@ export const CharactersList = () => {
 
     const handleNextPage = () => {
         if (nextPage) {
+            setCharacters([])
             fetchData(nextPage);
             setCurrentPage(currentPage + 1);
         }
@@ -45,15 +47,19 @@ export const CharactersList = () => {
     return (
     <div>
         <h1>Lista de Personajes de Rick and Morty</h1>
-        <div className='charactersList'>  
         {
-            characters.map(item => (
-                <div>
-                    <Character key={item.id} image={item.image} name={item.name}/>
-                </div>
-            ))
+            characters.length > 0 ?
+            <div className='charactersList'>  
+            {
+                characters.map(item => (
+                    <div>
+                        <Character key={item.id} id={item.id} image={item.image} name={item.name} location={item.location} origin={item.origin}/>
+                    </div>
+                ))
+            }
+            </div>
+            : <span className='loader'>loading...</span>
         }
-        </div>
         <div>
         <button onClick={handlePrevPage} disabled={!prevPage}>
             Página Anterior
