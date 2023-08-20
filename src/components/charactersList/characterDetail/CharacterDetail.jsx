@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"
 import React from 'react';
 import Modal from 'react-modal';
+import { Loader } from "../../loader/Loader.jsx";
 
 const customStyles = {
     content: {
@@ -99,7 +100,7 @@ export const CharacterDetail = () => {
                         </div>
                     </Modal>
                 </div>
-                : <span>loading...</span>    
+                : <span><Loader/></span>    
             }
         </>
     )
