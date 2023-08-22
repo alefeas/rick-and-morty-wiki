@@ -51,7 +51,7 @@ export const Loader = () => {
         <div
         style={{
             display: 'flex',
-            height: '100vh',
+            height: '100%',
             width: '100%',
             justifyContent: 'center',
             alignItems: 'center',

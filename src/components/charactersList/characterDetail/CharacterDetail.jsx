@@ -24,6 +24,15 @@ export const CharacterDetail = () => {
     const [location, setLocation] = useState({})
     const { id } = useParams()
 
+    const colorStatus = () => {
+        if (character.status === 'Dead') {
+            return <div className="mark redMark"></div>
+        } else if (character.status === 'Alive') {
+            return <div className="mark greenMark"></div>
+        } else {
+            return <div className="mark greyMark"></div>
+        }
+    }
     const fetchData = async (url) => {
         try {
             const response = await axios.get(url);
@@ -61,30 +70,32 @@ export const CharacterDetail = () => {
         setIsOpen(false);
     }
     return (
-        <>
+        <div className="detailContainer">
             {
                 character.image ?
                 <div className="itemDetail">
                     <img src={character.image} alt="" />
-                    <h3>{character.name}</h3>
-                    <span>Gender: {character.gender}</span>
-                    <span>Status: {character.status}</span>
-                    <span>Species: {character.species}</span>
-                    <span>Origin location: 
-                        {
-                            character.origin.url !== '' ?
-                            <span className="spanLocation" onClick={() => fetchLocation(character.origin.url)}> {character.origin.name}</span>
-                            : <span> {character.origin.name}</span>
-                        }
-                    </span>
-                    <span>Last location endpoint: 
-                        {
-                            character.location.url !== '' ?
-                        <span className="spanLocation" onClick={() => fetchLocation(character.location.url)}> {character.location.name}</span>
-                        : <span> {character.location.name}</span>
-                        }
-                    </span>
-
+                    <div>
+                        <div className="infoDetailContainer">
+                            <h3>{character.name}</h3>
+                            <span className="status">{colorStatus()} {character.status} | {character.species}</span>
+                            <span className="genreContainer">Genre: <span>{character.gender}</span></span>
+                            <span className="locationsContainer">Origin location: 
+                                {
+                                    character.origin.url !== '' ?
+                                    <span className="spanLocation" onClick={() => fetchLocation(character.origin.url)}> {character.origin.name}</span>
+                                    : <span> {character.origin.name}</span>
+                                }
+                            </span>
+                            <span className="locationsContainer">Last location endpoint: 
+                                {
+                                    character.location.url !== '' ?
+                                    <span className="spanLocation" onClick={() => fetchLocation(character.location.url)}> {character.location.name}</span>
+                                    : <span> {character.location.name}</span>
+                                }
+                            </span>
+                        </div>
+                    </div>
                     <Modal
                         isOpen={modalIsOpen}
                         onAfterOpen={afterOpenModal}
@@ -102,6 +113,6 @@ export const CharacterDetail = () => {
                 </div>
                 : <span><Loader/></span>    
             }
-        </>
+        </div>
     )
 }
