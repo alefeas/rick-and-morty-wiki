@@ -17,7 +17,7 @@ export const CharactersList = () => {
     const [prevPage, setPrevPage] = useState(null);
     const [nextPage, setNextPage] = useState(null);
     const [currentPage, setCurrentPage] = useSessionStorage('currentPage', 1);
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useSessionStorage('searchTerm', '');
     const [loading, setLoading] = useState(false)
 
     const fetchData = async (url) => {
@@ -57,16 +57,35 @@ export const CharactersList = () => {
             setCurrentPage(currentPage + 1);
         }
     };
+    const resetFilter = () => {
+        setCurrentPage(1)
+        setStatus('')
+        setGender('')
+        setSpecies('')
+        setSearchTerm('')
+    }
 
     return (
         <div>
             <h1>List of Characters</h1>
             <div className='searchContainer'>
                 <Search setSearchTerm={setSearchTerm} setCurrentPage={setCurrentPage} searchTerm={searchTerm}/>
-                <div>
-                    <Status setCurrentPage={setCurrentPage} setStatus={setStatus}/>
-                    <Gender setCurrentPage={setCurrentPage} setGender={setGender} gender={gender}/>
-                    <Species setCurrentPage={setCurrentPage} setSpecies={setSpecies}/>
+                <div className='filtersContainer'>
+                    <div className='selectContainer'>
+                        <div className='selectCategoryContainer'>
+                            <span className='selectName'>Status: </span>
+                            <Status setCurrentPage={setCurrentPage} setStatus={setStatus} status={status}/>
+                        </div>
+                        <div className='selectCategoryContainer'>
+                            <span className='selectName'>Gender: </span>
+                            <Gender setCurrentPage={setCurrentPage} setGender={setGender} gender={gender}/>
+                        </div>
+                        <div className='selectCategoryContainer'>
+                            <span className='selectName'>Species: </span>
+                            <Species setCurrentPage={setCurrentPage} setSpecies={setSpecies} species={species}/>
+                        </div>
+                    </div>
+                    <button className='resetButton' onClick={resetFilter}>RESET FILTERS</button>
                 </div>
             </div>
             {loading === false ? (
@@ -80,7 +99,7 @@ export const CharactersList = () => {
                             </div>
                         ))}
                         </>
-                        : <span>no results for {searchTerm}</span>
+                        : <span>No results for this search</span>
                     }
                 </div>
             ) : (

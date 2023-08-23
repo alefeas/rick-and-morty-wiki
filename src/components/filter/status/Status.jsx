@@ -1,14 +1,22 @@
-export const Status = ({setCurrentPage, setStatus}) => {
-    const filter = (selectValue) => {
-        setCurrentPage(1)
-        setStatus(selectValue)
-    }
+import { SelectCategory } from "../SelectCategory.jsx"
+
+export const Status = ({setCurrentPage, setStatus, status}) => {
+    const statusArray = [
+        {
+            label: 'Alive',
+            value: 'Alive'
+        }, 
+        {
+            label: 'Dead',
+            value: 'Dead'
+        }, 
+        {
+            label: 'Unknown',
+            value: 'Unknown'
+        }
+    ]
 
     return (
-        <select placeholder='status' onChange={(e) => filter(e.target.value)} name="status" id="">
-            <option value="alive">alive</option>
-            <option value="dead">dead</option>
-            <option value="unknown">unknown</option>
-        </select>
+        <SelectCategory category={status} setCategory={setStatus} setCurrentPage={setCurrentPage} options={statusArray}/>
     )
 }

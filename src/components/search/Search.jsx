@@ -5,11 +5,14 @@ export const Search = ({setCurrentPage, setSearchTerm, searchTerm}) => {
     }
 
     return (
-        <input
-            type="text"
-            placeholder="Search characters..."
-            value={searchTerm}
-            onChange={(e) => onChangeInput(e.target.value)}
-        />
+        <div className="searchContainer">
+            <input
+                className="searchInput"
+                type="text"
+                placeholder="Search characters..."
+                value={searchTerm}
+                onChange={(e) => onChangeInput(e.target.value)}
+            />
+        </div>
     )
 }

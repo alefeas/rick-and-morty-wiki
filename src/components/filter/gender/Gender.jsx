@@ -1,18 +1,25 @@
+import { SelectCategory } from '../SelectCategory.jsx';
 export const Gender = ({setCurrentPage, setGender, gender}) => {
-    const filter = (selectValue) => {
-        if (selectValue === gender) {
-
+    const genders = [
+        {
+            label:'Male',
+            value:'Male'
+        }, 
+        {
+            label:'Female',
+            value:'Female'
+        }, 
+        {
+            label:'Genderless',
+            value: 'Genderless'
+        }, 
+        {
+            label:'Unknown',
+            value: 'Unknown'
         }
-        setCurrentPage(1)
-        setGender(selectValue)
-    }
+    ]
 
     return (
-        <select placeholder='gender' onChange={(e) => filter(e.target.value)} name="gender" id="">
-            <option value="male">male</option>
-            <option value="female">female</option>
-            <option value="genderless">genderless</option>
-            <option value="unknown">unknown</option>
-        </select>
+        <SelectCategory category={gender} setCategory={setGender} setCurrentPage={setCurrentPage} options={genders}/>
     )
 }

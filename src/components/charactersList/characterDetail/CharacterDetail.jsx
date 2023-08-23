@@ -7,17 +7,17 @@ import { Loader } from "../../loader/Loader.jsx";
 
 const customStyles = {
     content: {
-        width: '300px',
+        width: '600px',
+        backgroundColor: '#1a1a1a',
+        fontSize: '20px',
         top: '50%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
         marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
+        transform: 'translate(-50%, -50%)'
     },
 };
-
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 
 export const CharacterDetail = () => {
     const [character, setCharacter] = useState({})  
@@ -69,6 +69,7 @@ export const CharacterDetail = () => {
     function closeModal() {
         setIsOpen(false);
     }
+
     return (
         <div className="detailContainer">
             {
@@ -103,11 +104,11 @@ export const CharacterDetail = () => {
                         style={customStyles}
                         contentLabel="Example Modal"
                     >
-                        <button onClick={closeModal}>close</button>
-                        <h4 ref={(_subtitle) => (subtitle = _subtitle)}>{location.name}</h4>
+                        <svg onClick={closeModal} className='closeModalButton' xmlns="http://www.w3.org/2000/svg" stroke="#f5f5f5" viewBox="0 0 32 32" id="X"><path stroke-width="4" d="m2 2 28 28M2 30 30 2" fill="#f5f5f5" class="color000000 svgShape"></path></svg>
+                        <h4 style={{marginTop:'5px'}} ref={(_subtitle) => (subtitle = _subtitle)}>{location.name}</h4>
                         <div className="infoLocationContainer">
                             <span>Type: {location.type}</span>
-                            <span>Dimension: {location.dimension}</span>
+                            <span>Dimension: {location.dimension === '' ? 'Unknown' : location.dimension}</span>
                         </div>
                     </Modal>
                 </div>

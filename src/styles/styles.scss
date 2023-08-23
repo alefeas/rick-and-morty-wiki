@@ -4,8 +4,20 @@
     font-family: 'Nunito', sans-serif;
     scroll-behavior: smooth;
     color: whitesmoke;
+    &::before {
+        background-color: #000000;
+    }
 }
+::-webkit-scrollbar {
+    width: 15px;
+    background-color: #1a1a1a;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
 body {
+    overflow-y: scroll;
     background-color: #1a1a1a;
     h1 {
         text-align: center;
@@ -16,7 +28,7 @@ body {
     flex-wrap: wrap;
     gap: 20px;
     max-width: 1400px;
-    margin: 0 auto;
+    margin:0px auto 20px auto;
     .item {
         border-radius: 5px;
         background-color: rgb(63, 63, 63);
@@ -136,13 +148,22 @@ body {
         }
     }
 }
+.modal {
+
+}
+.closeModalButton {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    width: 20px;
+}
 select ,option, input, button {
     background-color : #000000;
 }
 
 .greyMark
 .arrow {
-    color: white !important;
+    color: whitesmoke !important;
 }
 .pagesNumberContainer {
     text-align: center;
@@ -153,8 +174,90 @@ select ,option, input, button {
     color: red;
 }
 .loader {
-    min-height: 100vh;
+    min-height: 60vh;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.selectCategoryContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .selectName {
+        font-size: 18px;
+        font-weight: bold;
+    }
+}
+.searchContainer {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    .searchInput {
+        outline: none;
+        border: 1px solid whitesmoke;
+        background-color: #1a1a1a;
+        margin: 0 auto;
+        width: 100%;
+        padding: 0 10px ;
+        height: 45px;
+        font-size: 18px;
+        font-weight: 1000;
+    }
+}
+.filtersContainer {
+    width: 1220px;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto;
+    flex-direction: row;
+}
+.selectContainer {
+    display: flex;
+}
+.select {
+    display: flex;
+    height: 40px;
+    margin-right: 30px;
+    justify-content: left;
+    color: black;
+    .css-v68sna-control{
+        height: 30px;
+        width: 150px;
+        background-color: transparent;
+        cursor: pointer;
+    }
+    .css-qbdosj-Input {
+        background-color: transparent;
+    }
+    .css-blhudp-control {
+        width: 150px;
+        height: 30px;
+        cursor: pointer;
+        background-color: transparent;
+    }
+    .css-1nmdiq5-menu {
+        border: 1px solid whitesmoke;
+        background-color: #1a1a1a !important;
+    }
+}
+.selectedOptionContainer {
+    height: 40px;
+    margin-right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    justify-content: left;
+    .closeButton {
+        cursor: pointer;
+        width: 15px;
+    }
+}
+.resetButton {
+    cursor: pointer;
+    border: 1px solid white;
+    font-size: 18px; 
+    padding: 0 20px;
+    font-weight: bold;
 }
