@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import React from 'react';
 import Modal from 'react-modal';
 import { Loader } from "../../loader/Loader.jsx";
+import { GoBack } from "../../../goBack/GoBack.jsx";
 
 const customStyles = {
     content: {
@@ -40,6 +41,8 @@ export const CharacterDetail = () => {
             setCharacter(data);
         } catch (error) {
             console.error('Error al obtener datos de la API:', error);
+            window.history.replaceState(null, "New Page Title", "/404")
+            window.location.reload()
         }
     }
 
@@ -71,15 +74,18 @@ export const CharacterDetail = () => {
     }
 
     return (
+        <>
+        <GoBack/>
         <div className="detailContainer">
             {
                 character.image ?
                 <div className="itemDetail">
                     <img src={character.image} alt="" />
-                    <div>
                         <div className="infoDetailContainer">
-                            <h3>{character.name}</h3>
-                            <span className="status">{colorStatus()} {character.status} | {character.species}</span>
+                            <div className="statusNameContainer">
+                                <h3>{character.name}</h3>
+                                <span className="status">{colorStatus()} {character.status} | {character.species}</span>
+                            </div>
                             <span className="genreContainer">Genre: <span>{character.gender}</span></span>
                             <span className="locationsContainer">Origin location: 
                                 {
@@ -96,7 +102,6 @@ export const CharacterDetail = () => {
                                 }
                             </span>
                         </div>
-                    </div>
                     <Modal
                         isOpen={modalIsOpen}
                         onAfterOpen={afterOpenModal}
@@ -115,5 +120,6 @@ export const CharacterDetail = () => {
                 : <span><Loader/></span>    
             }
         </div>
+        </>
     )
 }

@@ -67,9 +67,12 @@ export const CharactersList = () => {
 
     return (
         <div>
-            <h1>List of Characters</h1>
+            <h1>Rick and Morty Wiki</h1>
             <div className='searchContainer'>
-                <Search setSearchTerm={setSearchTerm} setCurrentPage={setCurrentPage} searchTerm={searchTerm}/>
+                <div className='searchResetContainer'>
+                    <Search setSearchTerm={setSearchTerm} setCurrentPage={setCurrentPage} searchTerm={searchTerm}/>
+                    <button className='resetButton' id='resetButtonSmaller'>RESET FILTERS</button>
+                </div>
                 <div className='filtersContainer'>
                     <div className='selectContainer'>
                         <div className='selectCategoryContainer'>
@@ -99,7 +102,7 @@ export const CharactersList = () => {
                             </div>
                         ))}
                         </>
-                        : <span>No results for this search</span>
+                        : <span className='noResults'>No results for this search</span>
                     }
                 </div>
             ) : (

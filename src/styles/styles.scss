@@ -9,13 +9,13 @@
     }
 }
 ::-webkit-scrollbar {
-    width: 15px;
     background-color: #1a1a1a;
+    width: 10px;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
 }
-
 body {
     overflow-y: scroll;
     background-color: #1a1a1a;
@@ -46,22 +46,38 @@ body {
             border: 4px solid #f5f5f5;
             border-radius: 50%;
             img {
-                width: 200px;
-                height: 200px;
+                width: 100%;
+                height: 100%;
                 border-radius: 50%;
                 background-color: black;
             }
         }
         h3 {
-            margin: 0 auto;
+            padding: 0 10px;
             height: 100%;
-            width: 250px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
     }
+    .noResults {
+        font-size: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 50vh;
+    }
 }
+.goBackLink {
+    margin: 10px 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .infoLocationContainer {
     display: flex;
     flex-direction: column;
@@ -87,7 +103,7 @@ body {
     }
 }
 .detailContainer {
-    min-height: 100vh;
+    min-height: 77vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -102,7 +118,7 @@ body {
         font-size: 20px;
         font-weight: 700;
         img {
-            width: 350px;
+            width: 400px;
         }
         h3 {
             font-size: 30px;
@@ -120,12 +136,17 @@ body {
             @extend .locationsContainer
         }
         .infoDetailContainer {
+            max-width: 350px;
             padding-right: 30px;
-            max-width: 400px;
-            height: 330px;
+            height: 370px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            .statusNameContainer {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
         }
         .status {
             display: flex;
@@ -148,23 +169,13 @@ body {
         }
     }
 }
-.modal {
-
-}
 .closeModalButton {
     cursor: pointer;
     position: absolute;
     right: 20px;
     width: 20px;
 }
-select ,option, input, button {
-    background-color : #000000;
-}
 
-.greyMark
-.arrow {
-    color: whitesmoke !important;
-}
 .pagesNumberContainer {
     text-align: center;
     width: 100px;
@@ -179,85 +190,337 @@ select ,option, input, button {
     justify-content: center;
     align-items: center;
 }
-.selectCategoryContainer {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    .selectName {
-        font-size: 18px;
-        font-weight: bold;
-    }
-}
 .searchContainer {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    width: 1200px;
+    width: 1400px;
     .searchInput {
         outline: none;
         border: 1px solid whitesmoke;
         background-color: #1a1a1a;
         margin: 0 auto;
-        width: 100%;
+        width: calc(100% - 22px);
         padding: 0 10px ;
         height: 45px;
         font-size: 18px;
         font-weight: 1000;
     }
+    #resetButtonSmaller {
+        display: none;
+    }
 }
 .filtersContainer {
-    width: 1220px;
+    width: 1400px;
     display: flex;
     justify-content: space-between;
     margin: 20px auto;
     flex-direction: row;
-}
-.selectContainer {
-    display: flex;
-}
-.select {
-    display: flex;
-    height: 40px;
-    margin-right: 30px;
-    justify-content: left;
-    color: black;
-    .css-v68sna-control{
-        height: 30px;
-        width: 150px;
-        background-color: transparent;
-        cursor: pointer;
-    }
-    .css-qbdosj-Input {
-        background-color: transparent;
-    }
-    .css-blhudp-control {
-        width: 150px;
-        height: 30px;
-        cursor: pointer;
-        background-color: transparent;
-    }
-    .css-1nmdiq5-menu {
-        border: 1px solid whitesmoke;
-        background-color: #1a1a1a !important;
-    }
-}
-.selectedOptionContainer {
-    height: 40px;
-    margin-right: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    justify-content: left;
-    .closeButton {
-        cursor: pointer;
-        width: 15px;
+    .selectContainer {
+        display: flex;
+        .selectCategoryContainer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 240px;
+            .selectName {
+                font-size: 18px;
+                font-weight: bold;
+            }
+            .select {
+                display: flex;
+                height: 40px;
+                margin-right: 30px;
+                justify-content: left;
+                color: black;
+                .css-v68sna-control{
+                    height: 30px;
+                    width: 150px;
+                    background-color: transparent;
+                    cursor: pointer;
+                }
+                .css-blhudp-control {
+                    width: 150px;
+                    height: 30px;
+                    cursor: pointer;
+                    background-color: transparent;
+                }
+                .css-1nmdiq5-menu {
+                    border: 1px solid whitesmoke;
+                    background-color: #1a1a1a !important;
+                }
+            }
+            .selectedOptionContainer {
+                height: 40px;
+                margin-right: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                justify-content: left;
+                .closeButton {
+                    cursor: pointer;
+                    width: 15px;
+                }
+            }
+        }
     }
 }
 .resetButton {
+    background-color: #1a1a1a;
     cursor: pointer;
     border: 1px solid white;
     font-size: 18px; 
     padding: 0 20px;
     font-weight: bold;
+}
+.error {
+    font-weight: bold;
+    font-size: 30px;
+    min-height: 77vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer {
+    font-size: 14px;
+    margin: 30px 0px 20px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+//WEB RESPONSIVE DESIGN
+
+@media screen and (max-width: 1500px) {
+    .charactersList {
+        width: 90vw;
+        gap: 2vw;
+        .item {
+            width: 21vw;
+            height: auto;
+            div {
+                min-width: 0;
+                min-height: 0;
+                width: 15vw;
+                height: 15vw;
+                margin: 1vw auto;
+                border: .4vw solid whitesmoke;
+                img {
+                    width: 15vw;
+                }
+            }
+            h3 {
+                height: 3vw !important;
+            }    
+        }
+    }
+    .searchContainer {
+        width: 90vw !important;
+    }
+    .filtersContainer {
+        width: 90vw !important;
+    }
+}
+@media screen and (max-width: 1050px) {
+    .charactersList {
+        width: 90vw;
+        gap: 2.2vw;
+        .item {
+            width: 28.5vw;
+            height: auto;
+            div {
+                min-width: 0;
+                min-height: 0;
+                width: 21vw;
+                height: 21vw;
+                margin: 2vw auto;
+                border: .4vw solid whitesmoke;
+                img {
+                    width: 21vw;
+                    height: 21vw;
+                }
+            }
+            h3 {
+                height: 3vw !important;
+            }    
+        }
+    }
+    .searchContainer {
+        width: 90vw !important;
+        .searchResetContainer {
+            display: flex;
+            gap: 40px;
+            .searchInput{
+                width: 100%;
+            }
+            #resetButtonSmaller {
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                width: 255px;
+            }
+        }
+    }
+    .filtersContainer {
+        width: 90vw !important;
+        .resetButton {
+            display: none;
+        }
+    }
+}
+@media screen and (max-width: 850px) {
+    .detailContainer {
+        margin-top: 20px;
+        .itemDetail {
+            display: flex;
+            flex-direction: column;
+            img {
+                width: 100%;
+            }
+            h3 {
+                font-size: 24px;
+            }
+            .infoDetailContainer {
+                height: auto;
+                gap: 20px;
+                max-width: 850px;
+                width: 80vw !important;
+                min-width: 280px;
+                padding-right: 0;
+                margin: 0px 10px 10px 10px;
+            }
+        }
+    }
+    .goBackLink {
+        margin: 0px 10px;
+    }
+}
+@media screen and (max-width: 800px) {
+    .filtersContainer {
+        .selectContainer {
+            width: 100%;
+            justify-content: space-between;
+            .selectCategoryContainer {
+                flex-direction: column;
+                width: 155px;
+                .selectedOptionContainer {
+                    margin-right: 0 !important;    
+                }
+            }
+            .select {
+                .css-v68sna-control{
+                    margin-left: 30px;
+                    width: 110px;
+                }
+                .css-blhudp-control {
+                    margin-left: 30px;
+                    width: 110px;         
+                }
+                .css-1nmdiq5-menu {
+                    margin-left: 30px;
+                    width: 150px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .charactersList {
+        gap: 2.2vw;
+        .item {
+            height: 49.5vw;
+            width: 43.9vw;
+            div {
+                width: 31vw;
+                height: 31vw;
+                margin: 2vw auto;
+                border: .8vw solid whitesmoke;
+                img {
+                    width: 31vw;
+                    height: 31vw;
+                }
+            }
+            h3 {
+                padding: 0 5px;
+                height: 5vw !important;
+            }    
+        }
+    }
+    .ReactModal__Content {
+        padding: 15px 45px 15px 15px!important;
+        width: 70vw !important;
+        span {
+            font-size: 18px;
+        }
+    }
+}
+@media screen and (max-width: 540px) {
+    .charactersList {
+        .item {
+            height: 53.5vw;
+            h3 {
+                padding: 0 7.5px;
+                font-size: 16px;
+                height: 8vw !important;
+            }
+        }
+    }
+    .searchContainer{
+        .searchResetContainer {
+            .searchInput {
+                width: calc(100% - 22px);
+            }
+            #resetButtonSmaller {
+                display: none !important;
+            }
+        }
+    }
+    .filtersContainer {
+        flex-direction: column !important;
+        .selectContainer {
+            width: 100%;
+            flex-direction: column;
+            .selectCategoryContainer {
+                margin-bottom: 15px;
+                max-width: 1000px;
+                flex-direction: column;
+                align-items: start !important;
+            }
+            .select {
+                .css-v68sna-control{
+                    margin: 0;
+                    width: 90vw !important;
+                }
+                .css-blhudp-control {
+                    margin: 0;
+                    width: 90vw !important;         
+                }
+                .css-1nmdiq5-menu {
+                    margin: 0;
+                    width: 90vw;
+                }
+            }
+        }
+        .resetButton {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            width: 90vw;
+        }
+    }
+}
+@media screen and (max-width: 400px) {
+    .charactersList {
+        .item {
+            height: 60vw;
+            h3 {
+                height: 12vw !important;
+            }
+        }
+    }
 }
